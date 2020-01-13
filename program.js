@@ -56,9 +56,9 @@ module.exports = checkUsersValid;
     },{});
 }
 
-module.exports = countWords */
+module.exports = countWords 
 
-
+//recursion
 function reduce(arr, fn, initial) {
     return (function reduceOne(index, value) {
       if (index > arr.length - 1) return value 
@@ -67,3 +67,28 @@ function reduce(arr, fn, initial) {
   }
   
   module.exports = reduce;
+
+  //Call
+  
+
+  //partial application without bind
+
+function logger(namespace) {
+  return function() {
+    console.log.apply(console, [namespace].concat( Array.prototype.slice.call(arguments)))
+  }
+}
+module.exports = logger
+
+  //partial application with bind
+  module.exports = function(namespace) {
+    return console.log.bind(console,namespace);
+  }
+*/
+//reduce with map
+module.exports = function arrayMap(arr, fn) {
+    return arr.reduce((acc,value,i,arr) => {
+        acc.push(fn.call(this,value,i,arr));
+        return acc;
+    },[])
+  }
